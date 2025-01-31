@@ -5,15 +5,29 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
+#  imports =
+#    [ # Include the results of the hardware scan.
+#      ./hardware-configuration.nix
+      #./modules/postgres.nix
+#      ./modules/redis.nix
+#      ./modules/k3s.nix
+#    ];
+imports = let
+    # replace this with an actual commit id or tag
+    commit = "1666d16426abe79af5c47b7c0efa82fd31bf4c56";
+  in [ 
       ./hardware-configuration.nix
       #./modules/postgres.nix
       ./modules/redis.nix
       ./modules/k3s.nix
-    ];
-
+    "${builtins.fetchTarball {
+      url = "https://github.com/Mic92/sops-nix/archive/${commit}.tar.gz";
+      # replace this with an actual hash
+      sha256 = "1v1fxsd201kfr6lqkyjdljzcapx93l7jjlz25mxhyvixsc52wvda";
+    }}/modules/sops"
+  ];
   # boot.loader.grub.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.enable = true;
   boot.loader.grub.efiSupport = true;
   # boot.loader.grub.efiInstallAsRemovable = true;
@@ -52,6 +66,8 @@
     k3s
     k9s
     pkgs.redis
+    kubernetes-helm
+    pkgs.nfs-utils
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -61,9 +77,15 @@
     enable = true;
     enableSSHSupport = true;
   };
+  programs.tmux = {
+    enable = true;
+    clock24 = true;
+  };
   # List services that you want to enable:
-
-
+  services.openiscsi = {
+    enable = true;
+    name = "${config.networking.hostName}-initiatorhost";
+  };
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   # Open ports in the firewall.

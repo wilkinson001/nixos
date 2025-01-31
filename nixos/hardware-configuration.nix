@@ -13,21 +13,100 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/4D33-F865";
-      fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
-    };
-
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/34d47f82-9d34-42a1-bd20-57715003c540";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/boot";
-      fsType = "none";
-      options = [ "bind" ];
+    { device = "/dev/disk/by-uuid/4D33-F865";
+      fsType = "vfat";
+      options = [ "fmask=0077" "dmask=0077" ];
+    };
+
+  fileSystems."/var/lib/kubelet/pods/ce98fc82-5fbc-415a-aeca-45f633e930cf/volumes/kubernetes.io~projected/kube-api-access-r5jgt" =
+    { device = "tmpfs";
+      fsType = "tmpfs";
+    };
+
+  fileSystems."/var/lib/kubelet/pods/aa4c8339-d2b2-45eb-8eb2-914873362337/volumes/kubernetes.io~projected/kube-api-access-m5d7t" =
+    { device = "tmpfs";
+      fsType = "tmpfs";
+    };
+
+  fileSystems."/var/lib/kubelet/pods/997b29ed-246f-4f6d-939c-189f275d0037/volumes/kubernetes.io~projected/kube-api-access-vdvjq" =
+    { device = "tmpfs";
+      fsType = "tmpfs";
+    };
+
+  fileSystems."/var/lib/kubelet/pods/ea62d1e5-e35f-411b-8f80-09b08fd60905/volumes/kubernetes.io~projected/kube-api-access-ppjr7" =
+    { device = "tmpfs";
+      fsType = "tmpfs";
+    };
+
+  fileSystems."/var/lib/kubelet/pods/811e26d1-035c-4477-bd50-819a70814851/volumes/kubernetes.io~empty-dir/klipper-config" =
+    { device = "tmpfs";
+      fsType = "tmpfs";
+    };
+
+  fileSystems."/var/lib/kubelet/pods/811e26d1-035c-4477-bd50-819a70814851/volumes/kubernetes.io~secret/values" =
+    { device = "tmpfs";
+      fsType = "tmpfs";
+    };
+
+  fileSystems."/var/lib/kubelet/pods/811e26d1-035c-4477-bd50-819a70814851/volumes/kubernetes.io~projected/kube-api-access-wsrgl" =
+    { device = "tmpfs";
+      fsType = "tmpfs";
+    };
+
+  fileSystems."/var/lib/kubelet/pods/811e26d1-035c-4477-bd50-819a70814851/volumes/kubernetes.io~empty-dir/klipper-helm" =
+    { device = "tmpfs";
+      fsType = "tmpfs";
+    };
+
+  fileSystems."/var/lib/kubelet/pods/811e26d1-035c-4477-bd50-819a70814851/volumes/kubernetes.io~empty-dir/klipper-cache" =
+    { device = "tmpfs";
+      fsType = "tmpfs";
+    };
+
+  fileSystems."/var/lib/kubelet/pods/811e26d1-035c-4477-bd50-819a70814851/volumes/kubernetes.io~empty-dir/tmp" =
+    { device = "tmpfs";
+      fsType = "tmpfs";
+    };
+
+  fileSystems."/var/lib/kubelet/pods/495a2ab5-841f-4ee3-9634-fa3c983b95fa/volumes/kubernetes.io~empty-dir/tmp" =
+    { device = "tmpfs";
+      fsType = "tmpfs";
+    };
+
+  fileSystems."/var/lib/kubelet/pods/495a2ab5-841f-4ee3-9634-fa3c983b95fa/volumes/kubernetes.io~empty-dir/klipper-config" =
+    { device = "tmpfs";
+      fsType = "tmpfs";
+    };
+
+  fileSystems."/var/lib/kubelet/pods/495a2ab5-841f-4ee3-9634-fa3c983b95fa/volumes/kubernetes.io~empty-dir/klipper-helm" =
+    { device = "tmpfs";
+      fsType = "tmpfs";
+    };
+
+  fileSystems."/var/lib/kubelet/pods/495a2ab5-841f-4ee3-9634-fa3c983b95fa/volumes/kubernetes.io~secret/values" =
+    { device = "tmpfs";
+      fsType = "tmpfs";
+    };
+
+  fileSystems."/var/lib/kubelet/pods/495a2ab5-841f-4ee3-9634-fa3c983b95fa/volumes/kubernetes.io~empty-dir/klipper-cache" =
+    { device = "tmpfs";
+      fsType = "tmpfs";
+    };
+
+  fileSystems."/var/lib/kubelet/pods/495a2ab5-841f-4ee3-9634-fa3c983b95fa/volumes/kubernetes.io~projected/kube-api-access-vvjvv" =
+    { device = "tmpfs";
+      fsType = "tmpfs";
+    };
+
+  fileSystems."/var/lib/kubelet/pods/fce8a2fc-3400-48f0-8439-2d523fb0dcd9/volumes/kubernetes.io~projected/kube-api-access-zt9s9" =
+    { device = "tmpfs";
+      fsType = "tmpfs";
     };
 
   swapDevices =
@@ -42,12 +121,14 @@
   # networking.interfaces.cni0.useDHCP = lib.mkDefault true;
   # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
   # networking.interfaces.flannel.1.useDHCP = lib.mkDefault true;
-  # networking.interfaces.veth337f7172.useDHCP = lib.mkDefault true;
-  # networking.interfaces.veth3b46dc5e.useDHCP = lib.mkDefault true;
-  # networking.interfaces.veth52f967a1.useDHCP = lib.mkDefault true;
-  # networking.interfaces.veth7c6923d4.useDHCP = lib.mkDefault true;
-  # networking.interfaces.vethdb35b5e2.useDHCP = lib.mkDefault true;
-  # networking.interfaces.vethf0deecf5.useDHCP = lib.mkDefault true;
+  # networking.interfaces.veth22bd5cbd.useDHCP = lib.mkDefault true;
+  # networking.interfaces.veth980785d3.useDHCP = lib.mkDefault true;
+  # networking.interfaces.vetha6b70ffd.useDHCP = lib.mkDefault true;
+  # networking.interfaces.vethbcabe110.useDHCP = lib.mkDefault true;
+  # networking.interfaces.vethc3047251.useDHCP = lib.mkDefault true;
+  # networking.interfaces.vethc381462a.useDHCP = lib.mkDefault true;
+  # networking.interfaces.vethcf695706.useDHCP = lib.mkDefault true;
+  # networking.interfaces.vethde37fe2a.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
